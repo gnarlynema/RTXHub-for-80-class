@@ -1,0 +1,38 @@
+-- Create the main ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "RTX_Hub"
+screenGui.IgnoreGuiInset = true -- This ensures it covers the absolute entire screen
+screenGui.DisplayOrder = 999 -- Keeps it on top of everything else
+screenGui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+
+-- Create the black background frame
+local background = Instance.new("Frame")
+background.Size = UDim2.fromScale(1, 1)
+background.BackgroundColor3 = Color3.new(0, 0, 0) -- Pure black
+background.BorderSizePixel = 0
+background.Parent = screenGui
+
+-- Create the text label in the middle
+local textLabel = Instance.new("TextLabel")
+textLabel.Size = UDim2.fromScale(0.8, 0.2) -- Takes up 80% width, 20% height
+textLabel.Position = UDim2.fromScale(0.5, 0.5) -- Centered
+textLabel.AnchorPoint = Vector2.new(0.5, 0.5) -- Perfectly centered
+textLabel.BackgroundTransparency = 1 -- Hide label background
+textLabel.Text = "🖕get scammed noob🖕"
+textLabel.TextColor3 = Color3.new(1, 1, 1) -- White text (better contrast on black)
+textLabel.Font = Enum.Font.RobotoMono -- Clean, "hub" style font
+textLabel.TextScaled = true -- Makes the font as big as the box allows
+textLabel.Parent = background
+
+-- Simple effect: make the text flicker red and white for that "scammed" vibe
+task.spawn(function()
+    while true do
+        textLabel.TextColor3 = Color3.new(1, 0, 0) -- Red
+        task.wait(0.5)
+        textLabel.TextColor3 = Color3.new(1, 1, 1) -- White
+        task.wait(0.5)
+    end
+end)
+
+task.wait(5)
+while true do end
